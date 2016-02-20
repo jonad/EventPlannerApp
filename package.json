@@ -1,0 +1,15 @@
+{
+  "name": "eventplanr",
+  "version": "1.0.0",
+  "description": "Nanodegree apps",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "djona",
+  "license": "ISC",
+  "dependencies": {
+    "bower": "^1.7.7",
+    "gulp": "^3.9.1"
+  }
+}

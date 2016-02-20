@@ -1,0 +1,34 @@
+{
+  "name": "eventplanr",
+  "description": "Nanodegree apps",
+  "main": "main.js",
+  "authors": [
+    "djona"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "index.html",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.0",
+    "angular-animate": "^1.5.0",
+    "angular-auto-validate": "^1.19.3",
+    "angular-ladda": "^0.3.4",
+    "firebase": "^2.4.1",
+    "angularfire": "^1.1.3",
+    "angular-strap": "^2.3.7",
+    "AngularJS-Toaster": "angularjs-toaster#^1.2.0",
+    "bootstrap": "^3.3.6",
+    "bootstrap-additions": "^0.3.1",
+    "font-awesome": "^4.5.0",
+    "angular-ui-router": "ui-router#^0.2.18",
+    "ngInfiniteScroll": "^1.2.2"
+  }
+}
