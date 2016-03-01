@@ -1,0 +1,142 @@
+<div class="form-group">
+    <label for="eventName" class="col-sm-2 control"><b>Name</b></label>
+    <div class="col-sm-10">
+        <input type="text"
+                    class="form-control"
+                    name="ename"
+                    id="eventName"
+                    ng-model="Event.name"
+                    placeholder="Event Name"
+                    required
+                    />
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="eventType" class="col-sm-2 control"><b>Type</b></label>
+    <div class="col-sm-10">
+        <input type="text"
+                    class="form-control"
+                    name="etype"
+                    id="eventType"
+                    ng-model="Event.type"
+                    placeholder="Ex: birthday party, wedding, ... "
+                    required />
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="eventHost" class="col-sm-2 control"><b>Host</b></label>
+    <div class="col-sm-10">
+        <input type="text"
+                    class="form-control"
+                    placeholder="Name of the host"
+                    name="ehost"
+                    id="eventHost"
+                    ng-model="Event.host"
+                    required />
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="eventDate" class="col-sm-2"><b>Event Date</b>  <i class="fa fa-calendar"></i></label>
+    <div class="col-sm-10">
+        <input type="text"
+                    name="edate"
+                    class="form-control"
+                    autoclose="true"
+                    date-format="EEEE, MMMM d, y"
+                    data-min-date = "today"
+                    id="eventDate"
+                    placeholder="The day of the event"
+                    ng-model="Event.edate"
+                    bs-datepicker
+                    required />
+    </div>
+</div>
+
+    <div class="form-group">
+        <label class="col-sm-2"><b>Start time</b> <i class="fa fa-clock-o"></i></label>
+            <div class="col-sm-4">
+                <input type="text"
+                        class="form-control"
+                        class="time-picker"
+                        size="4"
+                        autoclose="true"
+                        ng-model="Event.stime"
+                        name="time"
+                        bs-timepicker data-time-format="h:mm a'"
+                        data-length="1"
+                        data-minute-step="1"
+                        data-arrow-behavior="picker"
+                        placeholder="From"
+                        required >
+            </div>
+    <label for="eventEtime" class="col-sm-2 control"><b>End Time </b><i class="fa fa-clock-o"></i> </label>
+    <div class="col-sm-4">
+        <input type="text"
+                  class="form-control time-picker"
+                        size="8"
+
+                        ng-model="Event.etime"
+                        name="time"
+                        autoclose="true"
+                        bs-timepicker data-time-format="h:mm a'"
+                        data-length="1"
+                        data-min-time="{{ Event.stime }}"
+                        data-minute-step="1"
+                        data-arrow-behavior="picker"
+                        placeholder="To"
+                        required >
+    </div>
+ </div>
+
+
+
+<div class="form-group">
+    <label for="eventLocation" class="col-sm-2 control"><b>Location</b> <i class="fa fa-map-marker"></i> </label>
+    <div class="col-sm-10">
+        <input type="text"
+                    g-places-autocomplete
+                    name="elocation"
+                    class="form-control"
+                    id="eventLocation"
+                    ng-model="Event.elocation"
+                    placeholder="Enter the event address ..."/>
+    </div>
+</div>
+
+
+<div class="form-group">
+    <div class="col-sm-2 control">
+    <label for="eventGlist"><b>Guest List</b></label>
+</div>
+    <div class="col-sm-10 control">
+            <div class="col-sm-8">
+                <ol class="list-group">
+                    <li class="list-group-item" ng-repeat="elt in Event.eglists" >
+                        {{ elt }}
+                    </li>
+                </ol>
+                </div>
+
+        <div class="col-ms-2"></div>
+    <div class="col-sm-8">
+       <span >
+           <input type="text"
+                    name="glist"
+                    class="form-control"
+                    id="eventGlist"
+                    ng-model="eglist"
+                    placeholder="Add a Guest"/>
+       </span>
+    </div>
+        <div class="col-sm-2">
+       <button class="btn btn-primary btn-circle" type="button" ng-click="add(eglist); eglist = null "><i class="fa fa-plus-circle"></i></button>
+        </div>
+       </div>
+
+    </div>
+
+
+

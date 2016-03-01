@@ -1,0 +1,33 @@
+<ul class="list-group">
+  <li class="list-group-item">
+      <span class="pull-right"> {{ event.name}}</span>
+      <strong>Event Name</strong>
+  </li>
+
+<li class="list-group-item">
+    <span class="pull-right"> {{ event.type}}</span>
+    <strong>Event Type</strong>
+</li>
+
+ <li class="list-group-item">
+    <span class="pull-right"> {{ event.host}}</span>
+    <strong>Event Host</strong>
+</li>
+
+  <li class="list-group-item">
+    <span class="pull-right"> {{ event.edate | date: "EEEE, MMMM d, y" }}</span>
+    <strong>Event Date</strong>
+</li>
+<li class="list-group-item">
+  <div class="row">
+    <div style="width: 50%; position: relative; float: left; padding-left: 15px">
+      <strong>From </strong><span class="pull-right">{{ event.stime  | date: ' hh:mm a' }}</span>
+      </div>
+
+      <div style="width: 50%; position: relative; float: right; padding-right: 15px;">
+      <strong style="padding-left: 5px;">To </strong><span class="pull-right">{{ event.etime  | date: ' hh:mm a' }}</span>
+      </div>
+    </div>
+  </li>
+  </div>
+</ul>

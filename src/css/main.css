@@ -1,0 +1,132 @@
+body {
+  padding-top: 70px;
+  font-family: 'Roboto', sans-serif;
+}
+
+html, body, main{
+  height: 100%;
+  width:100%;
+
+}
+
+.bt {
+  text-align: center;
+  margin-top: 10px;
+  margin-left: 50px;
+}
+.ccard {
+  width: 350px;
+  height: 380px;
+
+}
+
+.flexC {
+  flex-w: wrap-reverse;
+  }
+.cc {
+  width: 360px;
+}
+.tooltip-title {
+  background-color: #262b31;
+  color: white;
+  font-weight: bolder;
+  font-size: 1.1em;
+  border-radius: 1px;
+  text-align: center;
+
+}
+
+.valid{
+                position: relative;
+                background-color: white;
+                text-align: left;
+                 font-size: 1.1em;
+                 color: #005205;
+                border: 1px solid #005205;
+                text-align: left;
+                font-weight: bolder;
+
+}
+
+.valid::before {
+     content: "\f118";
+     font-family: FontAwesome;
+        top: 0;
+        left: -5px;
+        padding-right: 10px;
+      text-align: left;
+       }
+
+
+
+
+.tooltip.top .tooltip-arrow{ border-top-color: #0a0d03 ; } .
+.tooltip.left .tooltip-arrow{ border-left-color: #0a0d03 ; }
+.tooltip.bottom .tooltip-arrow{ border-bottom-color: #0a0d03; }
+.tooltip.right .tooltip-arrow{ border-right-color: #0a0d03; }
+.tooltip-inner{ background-color: white; }
+
+.tooltip.top{
+    margin-top:-2px
+}
+.tooltip.right{
+    margin-left:2px
+}
+.tooltip.bottom{
+    margin-top:2px
+}
+.tooltip.left{
+    margin-left:-2px
+}
+
+.invalid{
+                position: relative;
+                background-color: white;
+                text-align: left;
+                 font-size: 1.1em;
+                 color: red;
+                 font-weight: bolder;
+                  border: 1px solid #fa0000;
+
+}
+
+.invalid::before{
+  content: "\f119";
+   font-family: FontAwesome;
+        top: 0;
+        left: -5px;
+        padding-right: 10px;
+
+}
+
+.main-content {
+  padding: 40px 15px; }
+
+.spinner {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  margin: 0 auto;
+  padding: 40px 0; }
+.spinner p {
+margin-top: 20px; }
+
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.42;
+  border-radius: 15px;
+}
+
+.time-picker {
+  padding: 0 4px;
+  button {
+    outline: none;
+    border: 0px;
+  }
+
+}

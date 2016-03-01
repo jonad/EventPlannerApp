@@ -1,0 +1,54 @@
+
+
+<ul class="list-group">
+    <div class="btn-group-vertical"  style="display: block; width:100%;">
+
+          <li class="list-group-item">
+            <span class="pull-right"> {{ selectedEvent.name}}</span>
+            <strong>Event Name</strong>
+        </li>
+
+        <li class="list-group-item">
+            <span class="pull-right"> {{ selectedEvent.type}}</span>
+            <strong>Event Type</strong>
+        </li>
+
+        <li class="list-group-item">
+            <span class="pull-right"> {{ selectedEvent.host}}</span>
+            <strong>Event Host</strong>
+         </li>
+
+        <li class="list-group-item">
+            <span class="pull-right"> {{ selectedEvent.edate | date: "EEEE, MMMM d, y" }}</span>
+            <strong>Event Date</strong>
+        </li>
+
+        <li class="list-group-item">
+            <div class="row">
+                <div style="width: 50%; position: relative; float: left; padding-left: 15px">
+                    <strong>From </strong><span class="pull-right">{{ selectedEvent.stime  | date: ' hh:mm a' }}</span>
+              </div>
+
+        <div style="width: 50%; position: relative; float: right; padding-right: 15px;">
+            <strong style="padding-left: 5px;">To </strong><span class="pull-right">{{ selectedEvent.etime  | date: ' hh:mm a' }}</span>
+        </div>
+      </div>
+  </li>
+
+  <li class="list-group-item">
+    <span class="pull-right">   {{ selectedEvent.location.formatted_address }}</span>
+    <strong>Location</strong>
+  </li>
+
+   <li class="list-group-item">
+        <span> <strong>Guest List</strong></span>
+          <div class="btn-group-vertical pull-right">
+             <a class="btn btn-default pull-right" ng-repeat="glist in selectedEvent.glist">{{ glist }}</a>
+          </div>
+    <div class="clearfix"></div>
+</li>
+</div>
+</ul>
+
+
+

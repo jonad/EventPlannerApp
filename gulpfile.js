@@ -19,17 +19,10 @@ gulp.task('images', function() {
 });
 
 gulp.task('scripts', function() {
-    var b = browserify({
-        entries: 'src/js/main.js',
-        debug:true
-    });
-
-    b.bundle()
-        .pipe(source('main.js'))
-        .pipe(buffer())
+        gulp.src(['src/js/**/*.js'])
         .pipe(sourcemaps.init({loadMaps:true}))
         .pipe(uglify())
-        .pipe(sourcemaps.write('./'))
+        .pipe(sourcemaps.write('dist/js/'))
         .pipe(gulp.dest('dist/js/'))
         .pipe(browserSync.stream());
 });
@@ -59,14 +52,14 @@ gulp.task('templates', function() {
         .pipe(gulp.dest('dist/templates/'));
 });
 
-gulp.task('default', ['styles', 'images', 'scripts', 'templates','libs',  'index'], function() {
+gulp.task('default', ['styles', 'images', 'scripts', 'templates', 'libs' , 'index'], function() {
     browserSync.init({
         server:'dist/'
     });
 
     gulp.watch('src/**/*', browserSync.reload);
-    gulp.watch('src/js/**/*.css', ['styles']  );
-    gulp.watch('src/css/**/*.js', ['scripts']);
+    gulp.watch('src/css/**/*.css', ['styles']  );
+    gulp.watch('src/js/**/*.js', ['scripts']);
     gulp.watch('src/templates/**/*.html', ['templates']);
     gulp.watch('src/index.html', ['index']);
     gulp.watch('lib/**/*', ['lib']);

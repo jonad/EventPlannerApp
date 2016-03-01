@@ -1,0 +1,12 @@
+<div class="tooltip in" ng-show="title">
+  <div class="bottom tooltip-arrow"></div>
+  <div class="tooltip-title" ng-bind="title"></div>
+  <div class = "tooltip-inner valid" ng-if="hasUpper" ng-bind="upperCase"></div>
+  <div class = "tooltip-inner   invalid" ng-if="!hasUpper" ng-bind="upperCase"></div>
+  <div class="tooltip-inner valid" ng-if="hasLower" ng-bind="lowerCase"></div>
+  <div class="tooltip-inner invalid" ng-if="!hasLower" ng-bind="lowerCase"></div>
+  <div class="tooltip-inner valid" ng-if="hasDigit"  ng-bind="digit"></div>
+  <div class="tooltip-inner invalid " ng-if="!hasDigit"  ng-bind="digit"></div>
+  <div class="tooltip-inner valid " ng-if="hasLength"  ng-bind="length"></div>
+  <div class="tooltip-inner invalid " ng-if="!hasLength"  ng-bind="length"></div>
+</div>

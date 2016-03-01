@@ -1,0 +1,33 @@
+<div class="col-md-8 col-md-offset-2">
+    <form class="form-horizontal"
+                ng-submit="createEvent()"
+                novalidate>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <button type="button" class="btn btn-danger"><span class="lead" style="padding: 40px 15px;"><b>Create an event</b></span></button>
+
+                        <div class="pull-right">
+                            <button
+                                            ladda="events.isCreating"
+                                            type="submit"
+                                            class="btn btn-primary btn-sm">
+                                            <span ng-show="isCreating"><b>Creating</b></span>
+                                           <span ng-show="!isCreating"><b>Create</b></span>
+                            </button>
+
+                            <button class="btn btn-danger btn-sm"
+                                            ng-click="cancel()"><b>Cancel</b>
+                                </button>
+                        </div>
+
+                        <div class="clearfix"></div>
+                </div>
+                <div class="panel-body">
+                    <ng-include src="'templates/events/event.form.html'" ></ng-include >
+                </div>
+            </div>
+
+    </form>
+
+
+</div>

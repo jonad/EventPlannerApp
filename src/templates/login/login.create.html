@@ -1,0 +1,41 @@
+
+
+<div class="col-md-8 col-md-offset-2">
+    <form class="form-horizontal"
+                ng-submit="login(user.email, user.pass)"
+                novalidate="novalidate">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <span class="lead">Log In</span>
+
+                        <div class="pull-right">
+                            <button class="btn btn-primary btn-sm"
+                                            ladda="isCreating"
+                                            type="submit">
+                                            <span ng-show="isCreating">login user</span>
+                                            <span ng-show="!isCreating">Login</span>
+                            </button>
+                            <button class="btn btn-danger btn-sm"
+                                            ladda="isCancelling"
+                                            type="button"
+                                            ng-click="cancel()">
+                                            <span ng-show="!isCancelling"><strong>Cancel</strong></span>
+                                            <span ng-show="isCancelling"><strong>Canceling</strong></span>
+                                </button>
+
+                        </div>
+
+                        <div class="clearfix"></div>
+                </div>
+                <div class="panel-body">
+                    <ng-include src="'templates/login/login.form.html'" ></ng-include >
+                </div>
+            </div>
+
+    </form>
+<div ng-show="err"  >
+        <div class="alert alert-info" >
+            <p class="text-center" >Either password or email are invalid</p >
+        </div >
+    </div >
+</div>

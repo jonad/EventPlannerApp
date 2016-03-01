@@ -1,0 +1,108 @@
+<div class="form-group">
+    <label for="firstName" class="col-sm-2 control-label"><strong>First Name</strong></label>
+    <div class="col-sm-10">
+     <input type="text"
+                    class="form-control"
+                    name="fname"
+                    id="firstName"
+                    ng-model="user.firstName"
+                    placeholder="Enter your first name"
+                    required-err-type="firstNameRequired"
+                    required=""/>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="lastName" class="col-sm-2 control-label"><strong>Last Name</strong></label>
+    <div class="col-sm-10">
+     <input type="text"
+                    class="form-control"
+                    name="lname"
+                    id="lastName"
+                    ng-model="user.lastName"
+                    placeholder="Enter your last name"
+                    required-err-type="lastNameRequired"
+                    required=""/>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="emailAddr" class="col-sm-2 control-label"><strong>Email Address</strong></label>
+    <div class="col-sm-10">
+        <input type="email"
+                    class="form-control"
+                    id="emailAddr"
+                    ng-model="user.email"
+                    placeholder="Enter your email"
+                    email-err-type="validEmail"
+                    required="" />
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="passw" class="col-sm-2 control-label"><strong>Password</strong></label>
+    <div class="col-sm-10">
+     <input type="password"
+                    ng-minlength="8"
+                    ng-pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/"
+                    class="form-control"
+                    id="passw"
+                    placeholder="Enter your password"
+                    ng-model="user.pass"
+                    data-placement="top"
+                    password-validate
+                   data-animation="am-flip-x"
+                   data-template-url="templates/register/tooltip.html"
+                    bs-tooltip="tooltip"
+                    disable-validation-message=""
+                    required=""/>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="cpass" class="col-sm-2 control-label"><strong>Confirm Password</strong></label>
+    <div class="col-sm-10">
+     <input type="password"
+                    class="form-control"
+                    placeholder="Confirm Password"
+                    id="cpass"
+                    ng-model="user.confirm"
+                    required=""
+                    ng-minlength="8"
+                    ng-pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/"
+                    confirm-password="user.pass"
+                    required="" />
+    </div>
+</div>
+
+
+
+<div class="form-group">
+    <label for="emp" class="col-sm-2 control-label"><strong>Employer</strong></label>
+    <div class="col-sm-10">
+        <input type="text"
+                    class="form-control"
+                    id="emp"
+                    ng-model="user.employer"
+                    placeholder="The name of the company you work for." />
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="jtitle" class="col-sm-2 control-label"><strong>Job Title</strong></label>
+    <div class="col-sm-10">
+     <input type="text"
+                    class="form-control"
+                    id="jtitle"
+                    ng-model="user.jobTitle"
+                    placeholder="Your current position/current job"/>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="biog" class="col-sm-2 control-label"><strong>Tell us a little about yourself</strong></label>
+    <div class="col-sm-10">
+       <textarea class="form-control" rows="5" id="biog" ng-model="user.bio" placeholder="Anything about you, that you feel confortable to share."></textarea>
+    </div>
+</div>
+

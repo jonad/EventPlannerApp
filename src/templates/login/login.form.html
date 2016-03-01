@@ -1,0 +1,28 @@
+<div class="form-group">
+    <label for="emailAddr" class="col-sm-2 control-label">Email Address</label>
+    <div class="col-sm-10">
+     <input type="email"
+                    class="form-control"
+                    id="emailAddr"
+                    ng-model="user.email"
+                    placeholder="Enter your email address"
+                    required=""
+                    />
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="passw" class="col-sm-2 control-label">Password </label>
+    <div class="col-sm-10">
+     <input type="password"
+                    class="form-control"
+                    id="passw"
+                    ng-model="user.pass"
+                    ng-minlength="8"
+                    ng-pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/"
+                    required=""
+                    disable-validation-message=""
+
+                    />
+    </div>
+</div>
