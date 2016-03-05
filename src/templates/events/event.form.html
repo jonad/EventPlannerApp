@@ -1,5 +1,5 @@
 <div class="form-group">
-    <label for="eventName" class="col-sm-2 control"><b>Name</b></label>
+    <label for="eventName" class="col-sm-2 control"><b>Event Name</b></label>
     <div class="col-sm-10">
         <input type="text"
                     class="form-control"
@@ -7,26 +7,39 @@
                     id="eventName"
                     ng-model="Event.name"
                     placeholder="Event Name"
-                    required
+                    ng-min-length = "5"
+                    ng-minlenght-err-type = "enameMinLength"
+                    required-err-type="enameRequired"
+                    required=""
+                    autofocus
                     />
     </div>
 </div>
 
 <div class="form-group">
-    <label for="eventType" class="col-sm-2 control"><b>Type</b></label>
+    <label for="eventType" class="col-sm-2 control"><b>Event Type</b></label>
     <div class="col-sm-10">
-        <input type="text"
+        <input list="eType" name="myeType"
                     class="form-control"
                     name="etype"
                     id="eventType"
                     ng-model="Event.type"
-                    placeholder="Ex: birthday party, wedding, ... "
-                    required />
+                    placeholder="Ex: party, wedding, ... "
+                    ng-required-err-type="etypeRequired"
+                    required = ""/>
+            <datalist id="eType">
+                <option value="Weeding">
+                <option value="Party">
+                <option value="Meetup">
+                <option value="Meeting">
+                <option value="Conference Talk">
+                <option value="Others">
+            </datalist>
     </div>
 </div>
 
 <div class="form-group">
-    <label for="eventHost" class="col-sm-2 control"><b>Host</b></label>
+    <label for="eventHost" class="col-sm-2 control"><b>Event Host</b></label>
     <div class="col-sm-10">
         <input type="text"
                     class="form-control"
@@ -34,52 +47,61 @@
                     name="ehost"
                     id="eventHost"
                     ng-model="Event.host"
-                    required />
+                    ng-required-err-type="ehostRequired"
+                    required=""/>
     </div>
 </div>
 
 <div class="form-group">
-    <label for="eventDate" class="col-sm-2"><b>Event Date</b>  <i class="fa fa-calendar"></i></label>
+    <label for="eventDate" class="col-sm-2"><b>Event Date</b> <i class="fa fa-calendar"></i> </label>
     <div class="col-sm-10">
         <input type="text"
                     name="edate"
                     class="form-control"
                     autoclose="true"
-                    date-format="EEEE, MMMM d, y"
+                    data-date-format="EEEE, MMMM d, y"
                     data-min-date = "today"
                     id="eventDate"
                     placeholder="The day of the event"
                     ng-model="Event.edate"
+                    data-min-date-err-type= "edateValidate"
                     bs-datepicker
-                    required />
+                    ng-date-err-type="edateType"
+                    ng-required-err-type="edateRequired"
+                    required=""/>
     </div>
 </div>
-
     <div class="form-group">
-        <label class="col-sm-2"><b>Start time</b> <i class="fa fa-clock-o"></i></label>
+        <label for="startTime" class="col-sm-2"><b>Start time</b> <i class="fa fa-clock-o"></i></label>
             <div class="col-sm-4">
                 <input type="text"
-                        class="form-control"
-                        class="time-picker"
+                        class="form-control time-picker"
                         size="4"
+                        id="startTime"
                         autoclose="true"
                         ng-model="Event.stime"
                         name="time"
-                        bs-timepicker data-time-format="h:mm a'"
+                        bs-timepicker
+                        data-time-format="h:mm a'"
                         data-length="1"
                         data-minute-step="1"
                         data-arrow-behavior="picker"
                         placeholder="From"
-                        required >
-            </div>
-    <label for="eventEtime" class="col-sm-2 control"><b>End Time </b><i class="fa fa-clock-o"></i> </label>
+                        ng-date-err-type="edateTypeS"
+                        ng-required-err-type="estimeRequired"
+            required="">
+    </div>
+</div>
+
+  <div class="form-group">
+    <label for="endTime" for="endTime" class="col-sm-2 control"><b>End Time </b><i class="fa fa-clock-o"></i> </label>
     <div class="col-sm-4">
         <input type="text"
                   class="form-control time-picker"
                         size="8"
-
+                        id="endTime"
                         ng-model="Event.etime"
-                        name="time"
+                        name="endTime"
                         autoclose="true"
                         bs-timepicker data-time-format="h:mm a'"
                         data-length="1"
@@ -87,7 +109,13 @@
                         data-minute-step="1"
                         data-arrow-behavior="picker"
                         placeholder="To"
-                        required >
+                        ng-required-err-type="eEtimeRequired"
+                        valid-endtime="Event.stime"
+                        ng-date-err-type="edateTypeE"
+                        ng-focus = "focus=true"
+                        required="" >
+                        <span class="sample-show-hide help-block" style="color: red;" ng-show="!eventform.endTime.$valid && focus">
+<i class="fa fa-frown-o"></i>  The end time must be greater than {{Event.stime | date :' hh:mm a' }}<span>
     </div>
  </div>
 
@@ -102,7 +130,17 @@
                     class="form-control"
                     id="eventLocation"
                     ng-model="Event.elocation"
-                    placeholder="Enter the event address ..."/>
+                    placeholder="Enter the event address ..."
+                       ng-required-err-type="elocationRequired"
+                    required=""/>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="optMessage" class="col-sm-2 control"><b>Optional message about the event</b></label>
+    <div class="col-sm-10">
+      <textarea  for="optMessage" rows="4" cols="50"  id="optMessage" ng-model="Event.optMess" placeholder="please enter an optional message about the event"></textarea>
+
     </div>
 </div>
 
@@ -126,17 +164,20 @@
            <input type="text"
                     name="glist"
                     class="form-control"
+                    name="glistName"
                     id="eventGlist"
                     ng-model="eglist"
-                    placeholder="Add a Guest"/>
+                    placeholder="Add a Guest"
+                    validate-glist="Event.eglists"/>
        </span>
     </div>
+
         <div class="col-sm-2">
        <button class="btn btn-primary btn-circle" type="button" ng-click="add(eglist); eglist = null "><i class="fa fa-plus-circle"></i></button>
         </div>
        </div>
+</div>
 
-    </div>
 
 
 

@@ -1,3 +1,5 @@
+'use strict';
+
 var gulp = require('gulp');
 var browserSync = require('browser-sync').create();
 var minifyCss = require('gulp-minify-css');
@@ -7,7 +9,15 @@ var imageMin = require('gulp-imagemin');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
+var os = require('os');
+var open = require('gulp-open');
+var concat = require('gulp-concat');
+var rename = require('gulp-rename');
+var del = require('del');
 
+var browser = os.platform() === 'linux' ? 'google-chrome' : (
+  os.platform() === 'darwin' ? 'google chrome' : (
+  os.platform() === 'win32' ? 'chrome' : 'firefox'));
 
 
 
@@ -18,12 +28,23 @@ gulp.task('images', function() {
         .pipe(browserSync.stream());
 });
 
+gulp.task('clean:dist', function() {
+    return del.sync('dist');
+});
+
 gulp.task('scripts', function() {
-        gulp.src(['src/js/**/*.js'])
-        .pipe(sourcemaps.init({loadMaps:true}))
+
+
+
+      gulp.src(['src/**/*.js'])
+        .pipe(buffer())
+        .pipe(sourcemaps.init({loadMaps: true}))
+        .pipe(concat('app.js'))
+        .pipe(gulp.dest('dist/js'))
+        .pipe(rename('app.min.js'))
         .pipe(uglify())
-        .pipe(sourcemaps.write('dist/js/'))
-        .pipe(gulp.dest('dist/js/'))
+        .pipe(sourcemaps.write('dist/js'))
+        .pipe(gulp.dest('dist/js'))
         .pipe(browserSync.stream());
 });
 
@@ -31,7 +52,9 @@ gulp.task('styles', function(){
     gulp.src(['src/css/**/*.css'])
             .pipe(sourcemaps.init())
             .pipe(minifyCss())
-            .pipe(sourcemaps.write())
+            .pipe(concat('main.css'))
+            .pipe(rename('main.min.css'))
+            .pipe(sourcemaps.write('dist/css'))
             .pipe(gulp.dest('dist/css'))
             .pipe(browserSync.stream());
 
@@ -54,8 +77,10 @@ gulp.task('templates', function() {
 
 gulp.task('default', ['styles', 'images', 'scripts', 'templates', 'libs' , 'index'], function() {
     browserSync.init({
-        server:'dist/'
-    });
+        server:'dist/',
+        browser: "google chrome"
+    }
+    );
 
     gulp.watch('src/**/*', browserSync.reload);
     gulp.watch('src/css/**/*.css', ['styles']  );

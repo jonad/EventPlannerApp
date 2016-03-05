@@ -1,7 +1,9 @@
 "use strict"
 // register module
 
-angular.module('eventApp.register', ['firebase.utils', 'firebase.auth', 'ui.router',   'mgcrea.ngStrap',  'jcs-autoValidate', 'angular-ladda', 'toaster'])
+// Route configuration
+
+angular.module('eventApp.register', ['firebase.utils', 'firebase.auth', 'ui.router',   'mgcrea.ngStrap',  'jcs-autoValidate', 'angular-ladda', 'toaster', 'ngSanitize'])
 .config(['$stateProvider', function($stateProvider) {
     $stateProvider
         .state('register', {
@@ -16,13 +18,63 @@ angular.module('eventApp.register', ['firebase.utils', 'firebase.auth', 'ui.rout
     }
 ])
 
-.directive('passwordValidate', function() {
+// default error messages
+.run([ 'defaultErrorMessageResolver', function(defaultErrorMessageResolver) {
+                defaultErrorMessageResolver.getErrorMessages().then(function(errorMessages) {
+                errorMessages['confirmPassword'] = '<i class="fa fa-frown-o"></i> Please ensure the password match. ';
+                errorMessages['pwd'] = ' <i class="fa fa-frown-o"></i> Please make sure you entered a valid password';
+               errorMessages['validEmail'] = '<i class="fa fa-frown-o"></i> Please enter a valid email address';
+               errorMessages['firstNameRequired'] = '<i class="fa fa-frown-o"></i> Please enter your first name, this field is required';
+               errorMessages['lastNameRequired'] = '<i class="fa fa-frown-o"></i> Please enter your last name, this field is required';
+               errorMessages['confirmPasswordRequired'] = '<i class="fa fa-frown-o"></i> Please confirm your password, this field is required';
+              errorMessages['passwordRequired'] = '<i class="fa fa-frown-o"></i> Please enter your password, this field is required';
+               errorMessages['emailRequired'] = '<i class="fa fa-frown-o"></i> Please enter your email, this field is required';
+    });
+}])
+
+
+.directive('passwordValidate', [ '$tooltip', '$compile', '$timeout', '$templateCache',  function($tooltip, $compile, $timeout, $templateCache) {
     return {
         require: 'ngModel',
+
         link: function(scope, elm, attrs, ctrl) {
-            ctrl.$parsers.unshift(function(viewValue) {
 
+                var mytooltip =    $tooltip(elm, {
+                        title: scope.tooltip.title,
+                       contentTemplate: 'tooltip.html',
+                        html: true,
+                        trigger: 'manual',
+                        scope: scope,
+                        placement: 'top'
+                    });
 
+            elm.bind('focus', function() {
+                scope.showTooltip();
+            });
+
+            elm.bind('blur' , function() {
+                scope.hideTooltip();
+            });
+
+            scope.showTooltip = function() {
+                 if(!scope.hasLower ||  !scope.hasUpper || !scope.hasDigit ||  !scope.hasLength){
+                            mytooltip.show();
+                        } else {
+                             mytooltip.hide();
+                        }
+                };
+
+                scope.hideTooltip = function(){
+                        mytooltip.hide();
+                };
+
+                scope.valid = function() {
+                        $timeout(function() {
+                            scope.validParam = false
+                        }, 1000);
+                };
+
+                ctrl.$parsers.unshift(function(viewValue) {
                 scope.hasLower = (viewValue && /[a-z]/.test(viewValue)) ? 'valid' : undefined;
                 scope.hasUpper= (viewValue && /[A-Z]/.test(viewValue)) ? 'valid' : undefined;
                 scope.hasDigit = (viewValue && /\d/.test(viewValue)) ? 'valid' : undefined;
@@ -30,16 +82,21 @@ angular.module('eventApp.register', ['firebase.utils', 'firebase.auth', 'ui.rout
 
                 if(scope.hasLower && scope.hasUpper && scope.hasDigit &&  scope.hasLength) {
                     ctrl.$setValidity('pwd', true);
+                        scope.validParam = true;
+                        scope.valid();
+                        scope.hideTooltip();
                     return viewValue;
-                } else {
-                    ctrl.$setValidity('pwd', false);
-                    return undefined;
+                      } else {
+                         ctrl.$setValidity('pwd', false);
+                        scope.showTooltip();
+                        scope.validParam = false;
+                    return "undefined";
                 }
-
             });
-        }
+
+            }
     };
-})
+}])
 
 .directive("confirmPassword", [  function() {
 
@@ -64,23 +121,27 @@ angular.module('eventApp.register', ['firebase.utils', 'firebase.auth', 'ui.rout
 }])
 
 
-.controller('RegisterCtrl', ['$rootScope', '$scope', 'Auth', '$state', 'fbutil' ,'toaster',   function($rootScope, $scope, Auth, $state, fbutil, toaster){
+.controller('RegisterCtrl', ['$rootScope', '$scope', 'Auth', '$state', 'fbutil' ,'toaster',  '$timeout' , function($rootScope, $scope, Auth, $state, fbutil, toaster, $timeout){
     $scope.user = {};
     $scope.isCreating = false;
     $scope.isCancelling = false;
+
+
 
     $scope.tooltip = {
         "title": "Password requirements: ",
         "upperCase": "At least a upperCase letter.",
         "lowerCase" : "At least a lowerCase letter.",
         "digit" : "At least a number.",
-        "length" : "At least of length 8.",
-        trigger: 'focus'
-    };
+        "length" : "At least of length 8."
+
+};
+
+$scope.validParam = false;
 
 
     $scope.register = function(){
-         var email = $scope.user.email;
+    var email = $scope.user.email;
     var pass= $scope.user.pass;
     var firstName = $scope.user.firstName;
     var lastName = $scope.user.lastName;

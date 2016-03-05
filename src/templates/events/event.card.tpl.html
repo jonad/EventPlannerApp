@@ -4,49 +4,62 @@
     <div class="btn-group-vertical"  style="display: block; width:100%;">
 
           <li class="list-group-item">
-            <span class="pull-right"> {{ selectedEvent.name}}</span>
-            <strong>Event Name</strong>
+            <span class="card-detail"><strong>Event Name</strong></span>
+            <span class="edetail"> {{ selectedEvent.name}}</span>
+          </li>
+
+        <li class="list-group-item">
+              <span class="card-detail"><strong>Event Type</strong></span>
+            <span class="edetail"> {{ selectedEvent.type}}</span>
         </li>
 
         <li class="list-group-item">
-            <span class="pull-right"> {{ selectedEvent.type}}</span>
-            <strong>Event Type</strong>
-        </li>
-
-        <li class="list-group-item">
-            <span class="pull-right"> {{ selectedEvent.host}}</span>
-            <strong>Event Host</strong>
+        <span class="card-detail"><strong>Event Host</strong></span>
+            <span class="edetail"> {{ selectedEvent.host}}</span>
          </li>
 
         <li class="list-group-item">
-            <span class="pull-right"> {{ selectedEvent.edate | date: "EEEE, MMMM d, y" }}</span>
-            <strong>Event Date</strong>
+              <span class="card-detail"><strong>Event Date</strong></span>
+            <span class="edetail"> {{ selectedEvent.edate | date: "EEEE, MMMM d, y" }}</span>
         </li>
 
         <li class="list-group-item">
             <div class="row">
-                <div style="width: 50%; position: relative; float: left; padding-left: 15px">
-                    <strong>From </strong><span class="pull-right">{{ selectedEvent.stime  | date: ' hh:mm a' }}</span>
+                <div class="col-sm-4">
+                    <span> <strong>From</strong></span>
+                    <span class="card-detail-stime">{{ selectedEvent.stime  | date: ' hh:mm a' }}</span>
               </div>
 
-        <div style="width: 50%; position: relative; float: right; padding-right: 15px;">
-            <strong style="padding-left: 5px;">To </strong><span class="pull-right">{{ selectedEvent.etime  | date: ' hh:mm a' }}</span>
+        <div class="col-sm-8">
+            <span> <strong>To</strong></span>
+            <span class="card-detail-etime">{{ selectedEvent.etime  | date: ' hh:mm a' }}</span>
         </div>
       </div>
   </li>
 
   <li class="list-group-item">
-    <span class="pull-right">   {{ selectedEvent.location.formatted_address }}</span>
-    <strong>Location</strong>
-  </li>
+    <div class="row">
+      <div class="col-sm-4">
+            <span> <strong>Location</strong></span>
+      </div>
+      <div class="col-sm-8">
+    <span> {{ selectedEvent.location.formatted_address }}</span>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</li>
 
    <li class="list-group-item">
-        <span> <strong>Guest List</strong></span>
-          <div class="btn-group-vertical pull-right">
+        <span class="card-detail"> <strong>Guest list</strong></span>
+          <div class="btn-group-vertical edetail">
              <a class="btn btn-default pull-right" ng-repeat="glist in selectedEvent.glist">{{ glist }}</a>
           </div>
     <div class="clearfix"></div>
 </li>
+ <li class="list-group-item">
+              <span class="card-detail"><strong> Notes about the event</strong></span>
+            <span class="edetail"> {{ selectedEvent.optionalMessage  }}</span>
+        </li>
 </div>
 </ul>
 

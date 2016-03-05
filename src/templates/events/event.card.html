@@ -1,14 +1,15 @@
 <div class="col-sm-4">
-    <div class="panel panel-default cc flexC">
-        <div class="panel-heading cc">Event detail</div>
+    <div class="panel panel-default panel-card">
+        <div class="panel-heading panel-card">Event detail</div>
 
-        <div class="panel-body ccard">
-            <ng-include src="'templates/events/event.mini.card.tpl.html'" ></ng-include >
-            <button type="button"
+        <div class="panel-body ccard card-content">
+                <ng-include src="'templates/events/event.mini.card.tpl.html'" ></ng-include >
+                   <button type="button"
                           class="btn btn-success btn-sm pull-right"
-                            ui-sref="detail({ id : event.$id })"
-                            ng-click="root.more = false"> more ...
+                          ui-sref="detail({id: event.$id})"> more ...
               </button >
+
+
               <div class="clearfix"></div>
       </div>
     </div>

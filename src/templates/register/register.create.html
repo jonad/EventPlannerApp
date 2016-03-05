@@ -1,7 +1,8 @@
 <div class="col-md-8 col-md-offset-2">
     <form class="form-horizontal"
                 ng-submit="register()"
-                novalidate="novalidate">
+                novalidate="novalidate"
+                name="registerform">
                 <div class="panel panel-success">
                     <div class="panel-heading">
                         <span class="lead"><strong>Sign Up Form<strong></span>
@@ -31,6 +32,7 @@
             </div>
 
     </form>
+
         <div ng-show="err"  >
         <div class="alert alert-info" >
             <p class="text-center" >The email you entered has already been registered </p >

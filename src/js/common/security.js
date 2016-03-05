@@ -1,6 +1,6 @@
 "use strict"
 
-//module that handke user authentication.
+//module that handle user authentication.
 
 angular.module('eventApp.security', ['ui.router', 'firebase.auth'])
 
@@ -10,7 +10,7 @@ angular.module('eventApp.security', ['ui.router', 'firebase.auth'])
 
     $rootScope.$on("$stateChangeError", function( event, toState, toParams, fromState, fromParams, error){
 
-        if(errorr == "AUTH_REQUIRED"){
+        if( error === "AUTH_REQUIRED"){
              event.preventDefault();
             $state.go("login");
         }

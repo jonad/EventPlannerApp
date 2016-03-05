@@ -8,6 +8,7 @@
                     ng-model="user.firstName"
                     placeholder="Enter your first name"
                     required-err-type="firstNameRequired"
+                    autofocus
                     required=""/>
     </div>
 </div>
@@ -35,6 +36,7 @@
                     ng-model="user.email"
                     placeholder="Enter your email"
                     email-err-type="validEmail"
+                    required-err-type="emailRequired"
                     required="" />
     </div>
 </div>
@@ -46,16 +48,17 @@
                     ng-minlength="8"
                     ng-pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/"
                     class="form-control"
+                    name="ps"
                     id="passw"
                     placeholder="Enter your password"
                     ng-model="user.pass"
-                    data-placement="top"
                     password-validate
-                   data-animation="am-flip-x"
-                   data-template-url="templates/register/tooltip.html"
-                    bs-tooltip="tooltip"
-                    disable-validation-message=""
+                    ng-pattern-err-type=""
+                    ng-minlength-err-type=""
+                    required-err-type="passwordRequired"
                     required=""/>
+            <span class="success sample-show-hide help-block" ng-show="validParam">
+<i class="fa fa-smile-o"></i> valid password</span>
     </div>
 </div>
 
@@ -68,9 +71,8 @@
                     id="cpass"
                     ng-model="user.confirm"
                     required=""
-                    ng-minlength="8"
-                    ng-pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/"
                     confirm-password="user.pass"
+                    required-err-type="confirmPasswordRequired"
                     required="" />
     </div>
 </div>

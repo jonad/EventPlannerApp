@@ -20,11 +20,58 @@ html, body, main{
 
 }
 
-.flexC {
-  flex-w: wrap-reverse;
-  }
+.edetail {
+margin-left: 30%;
+
+}
+
+edetail-headr {
+  position: relative;
+  left: 50%;
+  right: 50%;
+}
+
+#tooltip-content {
+ top: -130px;
+ position: absolute;
+ background-color: #fff;
+width: 200px;
+right: -100px;
+
+}
+
+.sample-show-hide {
+  padding:10px;
+  background:white;
+  color: green;
+}
+
+.sample-show-hide {
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+
+.sample-show-hide.ng-hide {
+  opacity:0;
+}
+
+@media  screen and (min-width: 768px){
+.edetail-headr {
+  max-width: 768px;
+  position: absolute;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+}
+
+.passwrd-valid {
+  color: green;
+}
+
 .cc {
-  width: 360px;
+  width: 350px;
+
 }
 .tooltip-title {
   background-color: #262b31;
@@ -34,6 +81,7 @@ html, body, main{
   border-radius: 1px;
   text-align: center;
 
+
 }
 
 .valid{
@@ -41,8 +89,8 @@ html, body, main{
                 background-color: white;
                 text-align: left;
                  font-size: 1.1em;
-                 color: #005205;
-                border: 1px solid #005205;
+                 color: green;
+                 border: 1px solid green;
                 text-align: left;
                 font-weight: bolder;
 
@@ -57,8 +105,64 @@ html, body, main{
       text-align: left;
        }
 
+@media screen and (max-width: 480px){
+body {
+    width: 350px;
+    position: relative;
+    left: 2px;
+  }
 
+  .btn-circle {
+    position: absolute;
+    right: 1px;
+  }
 
+  textarea {
+    width: 100%;
+  }
+}
+
+.eventCard {
+  margin-left: 4px;
+}
+  .ccard {
+  width: 310px;
+  height: 350px;
+
+}
+
+.card-content {
+  margin-left: 10px;
+  margin-right: 10px;
+  }
+
+.panel-card{
+  width: 330px;
+
+}
+
+.card-detail{
+  width: 25%;
+}
+
+.card-detail-stime {
+     margin-left: 15%;
+}
+
+.card-detail-etime {
+  margin-left: 12%;
+}
+
+.event-form {
+padding: 40px 15px;
+}
+
+.mini-card {
+  width: 50%;
+   position: relative;
+   float: right;
+   padding-right: 15px;
+}
 
 .tooltip.top .tooltip-arrow{ border-top-color: #0a0d03 ; } .
 .tooltip.left .tooltip-arrow{ border-left-color: #0a0d03 ; }
@@ -67,7 +171,7 @@ html, body, main{
 .tooltip-inner{ background-color: white; }
 
 .tooltip.top{
-    margin-top:-2px
+    color: black px
 }
 .tooltip.right{
     margin-left:2px
@@ -100,7 +204,8 @@ html, body, main{
 }
 
 .main-content {
-  padding: 40px 15px; }
+  padding: 40px 15px;
+}
 
 .spinner {
   position: relative;

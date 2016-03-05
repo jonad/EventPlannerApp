@@ -26,16 +26,8 @@ angular.module('eventapp', [
 
     $urlRouterProvider.otherwise('/');
 }])
-.run(['$rootScope', 'Auth', 'bootstrap3ElementModifier', 'defaultErrorMessageResolver', function($rootScope, Auth, bootstrap3ElementModifier, defaultErrorMessageResolver) {
+.run(['$rootScope', 'Auth', 'bootstrap3ElementModifier', function($rootScope, Auth, bootstrap3ElementModifier) {
     bootstrap3ElementModifier.enableValidationStateIcons(true);
-
-     defaultErrorMessageResolver.getErrorMessages().then(function(errorMessages) {
-                errorMessages['confirmPassword'] = '<i class="fa fa-frown-o"></i> Please ensure the password match. ';
-               errorMessages['validEmail'] = '<i class="fa fa-frown-o"></i> Please enter a valid email address';
-               errorMessages['firstNameRequired'] = '<i class="fa fa-frown-o"></i> Please enter your first name, this field is required';
-               errorMessages['lastNameRequired'] = '<i class="fa fa-frown-o"></i> Please enter your last name, this field is required';
-    });
-
 
     Auth.$onAuth(function(user) {
         $rootScope.loggedIn = !!user;

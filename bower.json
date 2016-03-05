@@ -12,9 +12,7 @@
   "ignore": [
     "**/.*",
     "node_modules",
-    "bower_components",
-    "test",
-    "tests"
+    "libs"
   ],
   "dependencies": {
     "angular": "^1.5.0",
@@ -31,8 +29,7 @@
     "ngInfiniteScroll": "^1.2.2",
     "angular-spinner": "^0.8.1",
     "angular-resource": "^1.5.0",
-    "angular-google-places-autocomplete": "^0.2.7",
-    "angular-moment": "^0.10.3",
+    "angular-google-places-autocomplete": "^0.2.7"
 
-  }
+ }
 }
