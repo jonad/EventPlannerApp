@@ -52,8 +52,6 @@ gulp.task('styles', function(){
     gulp.src(['src/css/**/*.css'])
             .pipe(sourcemaps.init())
             .pipe(minifyCss())
-            .pipe(concat('main.css'))
-            .pipe(rename('main.min.css'))
             .pipe(sourcemaps.write('dist/css'))
             .pipe(gulp.dest('dist/css'))
             .pipe(browserSync.stream());
