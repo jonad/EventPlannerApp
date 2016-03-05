@@ -36,8 +36,7 @@ app.directive("validateGlist", [ function() {
 
     link : function(scope, element, attributes, ngModel){
       ngModel.$validators.validateGlist = function(modelValue){
-          console.log("model view", modelValue);
-          console.log("list", scope.validateGlist);
+
         return modelValue || (scope.validateGlist  && scope.validateGlist.length > 0);
       };
       scope.$watch('validateGlist', function() {
@@ -82,7 +81,7 @@ app.controller('HomeCtrl',  ['$rootScope', '$scope','fbutil', 'currentAuth', 'Au
     $scope.more = true;
 
     $scope.showMore = function() {
-      console.log(more)
+
       $scope.more = true;
     };
 
@@ -111,11 +110,20 @@ app.controller('CreateEventCtrl', ['$scope', '$state', 'eventSrv' , 'toaster', f
 
     $scope.add = function (eglist){
         if(eglist) {
-          $scope.Event.eglists.push(eglist);
+           $scope.Event.eglists.push(eglist);
         }
-        $scope.eglist="";
 
-      };
+};
+
+function addEvent(){
+    if($scope.Event.eglists.length  > 0 ){
+       return $scope.Event.eglists;
+    }  else {
+      $scope.add($scope.Event.eglist.toString());
+      return $scope.Event.eglists;
+    }
+}
+
 
       $scope.createEvent = function() {
 
@@ -129,11 +137,11 @@ app.controller('CreateEventCtrl', ['$scope', '$state', 'eventSrv' , 'toaster', f
                 'etime'     :         $scope.Event.etime.getTime(),
                 'location' :          JSON.parse(JSON.stringify($scope.Event.elocation)),
                 'optionalMessage': $scope.Event.optMess != null ? $scope.Event.optMess: "",
-                'glist'        :          $scope.Event.eglists.length  > 0 ? $scope.Event.eglists : $scope.Event.eglist
+                'glist'        :          addEvent()
       };
 
       $scope.events.addEvent(event).then(function() {
-        console.log(event);
+
           toaster.pop('success', 'Event   ' +  $scope.Event.name + ' created');
         $scope.Event = {};
         $state.go("home");
@@ -151,24 +159,13 @@ app.controller( 'EventDetailCtrl', ['$scope', '$stateParams', '$state', 'eventSr
   $state, eventSrv){
 
   $scope.selectedEvent = eventSrv.getEvent($stateParams.id);
-  console.log($scope.selectedEvent);
+
   $scope.back = function() {
     $state.go("home");
   }
 }
 ]);
 
-app.filter('isArray', function() {
-  return function (input) {
-    return angular.isArray(input);
-  };
-});
-
-app.filter('isString', function() {
-  return function (input) {
-    return angular.isString(input);
-  };
-});
 
 app.directive('ccEvent', function () {
 
