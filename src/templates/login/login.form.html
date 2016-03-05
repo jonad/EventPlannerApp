@@ -6,6 +6,8 @@
                     id="emailAddr"
                     ng-model="user.email"
                     placeholder="Enter your email address"
+                    ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/"
+                    ng-pattern-err-type="loginPattern";
                     autofocus
                     required=""
                     />
@@ -21,9 +23,8 @@
                     ng-model="user.pass"
                     ng-minlength="8"
                     ng-pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/"
+                    ng-pattern-err-type="validPassword"
                     required=""
-                    disable-validation-message=""
-
                     />
     </div>
 </div>

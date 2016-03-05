@@ -2,7 +2,7 @@
 
 // module to handle log in
 
-angular.module( 'eventApp.login', ['firebase.utils', 'firebase.auth', 'ui.router', 'angular-ladda'])
+angular.module( 'eventApp.login', ['firebase.utils', 'firebase.auth', 'ui.router', 'angular-ladda', 'jcs-autoValidate'])
     .config(['$stateProvider', 'laddaProvider',  function($stateProvider, laddaProvider) {
         $stateProvider
             .state('login', {
@@ -16,6 +16,16 @@ angular.module( 'eventApp.login', ['firebase.utils', 'firebase.auth', 'ui.router
         });
     }
  ])
+
+.run([ 'defaultErrorMessageResolver', function(defaultErrorMessageResolver) {
+
+
+              defaultErrorMessageResolver.getErrorMessages().then(function(errorMessages) {
+               errorMessages['loginPattern'] = '<i class="fa fa-frown-o"></i> Please enter a valid email address.';
+               errorMessages['validPassword'] = '<i class="fa fa-frown-o"></i> Please enter a valid password.';
+           }
+       );
+}])
 
 .controller('LoginCtrl', ['$scope', 'Auth', 'fbutil', '$state', function($scope, Auth, fbutil, $state) {
     $scope.user = {};
