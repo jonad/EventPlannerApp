@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "del": "^2.2.0",
-    "gulp-concat": "^2.6.0"
+    "gulp-concat": "^2.6.0",
+    "gulp-rename": "^1.2.2"
   }
 }

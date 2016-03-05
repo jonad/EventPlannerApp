@@ -166,14 +166,14 @@
                     class="form-control"
                     name="glistName"
                     id="eventGlist"
-                    ng-model="eglist"
+                    ng-model="Event.eglist"
                     placeholder="Add a Guest"
                     validate-glist="Event.eglists"/>
        </span>
     </div>
 
         <div class="col-sm-2">
-       <button class="btn btn-primary btn-circle" type="button" ng-click="add(eglist); eglist = null "><i class="fa fa-plus-circle"></i></button>
+       <button class="btn btn-primary btn-circle" type="button" ng-click="add(Event.eglist);  Event.eglist = null;"><i class="fa fa-plus-circle"></i></button>
         </div>
        </div>
 </div>

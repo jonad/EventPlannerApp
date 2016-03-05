@@ -36,9 +36,9 @@ app.directive("validateGlist", [ function() {
 
     link : function(scope, element, attributes, ngModel){
       ngModel.$validators.validateGlist = function(modelValue){
-
-        return modelValue || scope.validateGlist.length > 0;
-
+          console.log("model view", modelValue);
+          console.log("list", scope.validateGlist);
+        return modelValue || (scope.validateGlist  && scope.validateGlist.length > 0);
       };
       scope.$watch('validateGlist', function() {
         ngModel.$validate();
@@ -113,10 +113,12 @@ app.controller('CreateEventCtrl', ['$scope', '$state', 'eventSrv' , 'toaster', f
         if(eglist) {
           $scope.Event.eglists.push(eglist);
         }
+        $scope.eglist="";
 
       };
 
       $scope.createEvent = function() {
+
       var event = {
 
                 'name'      :       $scope.Event.name,
@@ -127,7 +129,7 @@ app.controller('CreateEventCtrl', ['$scope', '$state', 'eventSrv' , 'toaster', f
                 'etime'     :         $scope.Event.etime.getTime(),
                 'location' :          JSON.parse(JSON.stringify($scope.Event.elocation)),
                 'optionalMessage': $scope.Event.optMess != null ? $scope.Event.optMess: "",
-                'glist'        :          $scope.Event.eglists !== undefined ?  $scope.Event.eglists : ""
+                'glist'        :          $scope.Event.eglists.length  > 0 ? $scope.Event.eglists : $scope.Event.eglist
       };
 
       $scope.events.addEvent(event).then(function() {
@@ -149,12 +151,24 @@ app.controller( 'EventDetailCtrl', ['$scope', '$stateParams', '$state', 'eventSr
   $state, eventSrv){
 
   $scope.selectedEvent = eventSrv.getEvent($stateParams.id);
+  console.log($scope.selectedEvent);
   $scope.back = function() {
     $state.go("home");
   }
 }
 ]);
 
+app.filter('isArray', function() {
+  return function (input) {
+    return angular.isArray(input);
+  };
+});
+
+app.filter('isString', function() {
+  return function (input) {
+    return angular.isString(input);
+  };
+});
 
 app.directive('ccEvent', function () {
 

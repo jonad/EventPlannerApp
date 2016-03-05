@@ -51,9 +51,14 @@
 
    <li class="list-group-item">
         <span class="card-detail"> <strong>Guest list</strong></span>
-          <div class="btn-group-vertical edetail">
-             <a class="btn btn-default pull-right" ng-repeat="glist in selectedEvent.glist">{{ glist }}</a>
+          <div ng-if="selectedEvent.glist | isArray" class="btn-group-vertical edetail">
+             <a ng-repeat="glist in selectedEvent.glist" class="btn btn-default pull-right">{{ glist }}</a>
           </div>
+          <div ng-if="selectedEvent.glist | isString" class="btn-group-vertical edetail">
+             <a  class="btn btn-default pull-right">{{ selectedEvent.glist }}</a>
+          </div>
+
+
     <div class="clearfix"></div>
 </li>
  <li class="list-group-item">

@@ -35,7 +35,8 @@
                     id="emailAddr"
                     ng-model="user.email"
                     placeholder="Enter your email"
-                    email-err-type="validEmail"
+                    ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/"
+                    ng-pattern-err-type="validEmail"
                     required-err-type="emailRequired"
                     required="" />
     </div>
