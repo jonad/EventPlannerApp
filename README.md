@@ -5,4 +5,4 @@ how to run the app: <br />
 	2 - bower install <br />
 	3 - gulp <br/>
 
-[event_planner]:(https://eventplanner01.firebaseapp.com/#/) <br >
+[event_planner](https://eventplanner01.firebaseapp.com/#/) <br >
